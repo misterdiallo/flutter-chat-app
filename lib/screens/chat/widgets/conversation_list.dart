@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app_ui/designs/colors.dart';
+import 'package:flutter_chat_app_ui/models/chat_user_model.dart';
 import 'package:flutter_chat_app_ui/screens/chat/chat_details_page.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 class ConversationList extends StatefulWidget {
-  String name;
-  String messageText;
-  ProfilePicture imageUrl;
-  String time;
-  bool isMessageRead;
-  ConversationList(
-      {Key? key,
-      required this.name,
-      required this.messageText,
-      required this.imageUrl,
-      required this.time,
-      required this.isMessageRead})
-      : super(key: key);
+  ChatUserModel model;
+  ConversationList({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
   @override
   ConversationListState createState() => ConversationListState();
 }
@@ -23,13 +17,24 @@ class ConversationList extends StatefulWidget {
 class ConversationListState extends State<ConversationList> {
   @override
   Widget build(BuildContext context) {
+    ChatUserModel model = widget.model;
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const ChatDetailPage();
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return ChatDetailPage(
+              user: model,
+            );
+          }),
+        );
       },
       child: Container(
+        decoration: const BoxDecoration(
+            // color: widget.isMessageRead
+            //     ? AppColors.primaryGrey.withOpacity(0.3)
+            //     : AppColors.transparent,
+            ),
         padding:
             const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
         child: Row(
@@ -37,46 +42,71 @@ class ConversationListState extends State<ConversationList> {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  widget.imageUrl,
+                  ProfilePicture(
+                    name: '',
+                    radius: 21,
+                    fontsize: 21,
+                    random: true,
+                    img: model.imageURL != "" ? model.imageURL : null,
+                  ),
                   const SizedBox(
                     width: 16,
                   ),
                   Expanded(
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            widget.name,
-                            style: const TextStyle(fontSize: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          model.name,
+                          style: const TextStyle(
+                              fontSize: 16, color: AppColors.white0),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          model.messageText,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: model.totalNonRead > 0
+                                ? AppColors.primaryLight
+                                : AppColors.greyshade600,
                           ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            widget.messageText,
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey.shade600,
-                                fontWeight: widget.isMessageRead
-                                    ? FontWeight.bold
-                                    : FontWeight.normal),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            Text(
-              widget.time,
-              style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: widget.isMessageRead
-                      ? FontWeight.bold
-                      : FontWeight.normal),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  model.time,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.primaryGrey,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                model.totalNonRead > 0
+                    ? CircleAvatar(
+                        radius: 11,
+                        backgroundColor: appActiveColor,
+                        child: Text(
+                          model.totalNonRead.toInt() < 99
+                              ? '${model.totalNonRead}'
+                              : "+99",
+                          style: const TextStyle(fontSize: 10.0),
+                        ),
+                      )
+                    : const SizedBox(),
+              ],
             ),
           ],
         ),
