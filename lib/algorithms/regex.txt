@@ -1,0 +1,75 @@
+onTap: () {
+                              if (onSelection) {
+                                if (_selectedItems.contains(index)) {
+                                  setState(() {
+                                    print(
+                                      int.parse(_selectedContacts
+                                          .map((e) => e.keys.singleWhere(
+                                              (element) => element == index,
+                                              orElse: () => -999))
+                                          .toList()
+                                          .where((element) => element != -999)
+                                          .toString()
+                                          .replaceAll(RegExp(r'\)'), "")
+                                          .toString()
+                                          .replaceAll(RegExp(r'\('), "")),
+                                    );
+                                    _selectedContacts.removeWhere((element) =>
+                                        element[index] ==
+                                        'KL-14-V-5208');
+                                    // _selectedContacts.removeAt(
+                                    //   int.parse(_selectedContacts
+                                    //       .map((e) => e.keys.singleWhere(
+                                    //           (element) => element == index,
+                                    //           orElse: () => -999))
+                                    //       .toList()
+                                    //       .where((element) => element != -999)
+                                    //       .toString()
+                                    //       .replaceAll(RegExp(r'\)'), "")
+                                    //       .toString()
+                                    //       .replaceAll(RegExp(r'\('), "")),
+                                    // );
+                                    _selectedItems.remove(index);
+                                    print("List is : ${_selectedContacts.map(
+                                          (e) => e.keys.map((e) => e),
+                                        ).join(" ~ ")
+                                        // .toList()
+                                        .toString().replaceAll(RegExp(r'\)'), "").toString().replaceAll(RegExp(r'\('), "")}");
+                                    if (_selectedItems.isEmpty) {
+                                      onSelection = false;
+                                      _selectedContacts.clear();
+                                    }
+                                  });
+                                } else {
+                                  setState(() {
+                                    _selectedItems.add(index);
+                                    print("Added number : $index");
+                                    _selectedContacts.add({index: data});
+                                    print("List is : ${_selectedContacts.map(
+                                          (e) => e.keys.map((e) => e),
+                                        ).join(" ~ ")
+                                        // .toList()
+                                        .toString().replaceAll(RegExp(r'\)'), "").toString().replaceAll(RegExp(r'\('), "")}");
+                                  });
+                                }
+                              }
+                            },
+                            onLongPress: () {
+                              if (!onSelection) {
+                                setState(() {
+                                  onSelection = true;
+                                  if (!_selectedItems.contains(index)) {
+                                    setState(() {
+                                      _selectedItems.add(index);
+                                      print("Added number : $index");
+                                      _selectedContacts.add({index: data});
+                                      print("List is : ${_selectedContacts.map(
+                                            (e) => e.keys.map((e) => e),
+                                          ).join(" ~ ")
+                                          // .toList()
+                                          .toString().replaceAll(RegExp(r'\)'), "").toString().replaceAll(RegExp(r'\('), "")}");
+                                    });
+                                  }
+                                });
+                              }
+                            },

@@ -1,0 +1,235 @@
+import 'package:flutter_chat_app_ui/models/contact_user_model.dart';
+
+List<ContactUserModel> listContactsUser = [
+  ContactUserModel(
+    userid: 1,
+    fullname: "Mamadou Alpha Diallo",
+    alias: "Alpha Diallo ",
+    sex: "Male",
+    email: "misterdiallo@outlook.com ",
+    phone: "+8618354919254",
+    description:
+        "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
+    picture: "profile.jpg",
+  ),
+  ContactUserModel(
+    userid: 2,
+    fullname: "Wang Li",
+    alias: "Wang Li",
+    sex: "Male",
+    email: "wangli@qq.com ",
+    phone: "+86183443349254",
+    description:
+        "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
+    picture: "1.jpeg",
+  ),
+  ContactUserModel(
+    userid: 3,
+    fullname: "Zhang Xue",
+    alias: "Zhang Xue ",
+    sex: "Female",
+    email: "zhangxue@qq.com ",
+    phone: "+861300000000",
+    description:
+        "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
+    picture: "2.jpeg",
+  ),
+  ContactUserModel(
+    userid: 4,
+    fullname: "Fu DeQian",
+    alias: "Fu DeQian",
+    sex: "Male",
+    email: "fdq@qq.com ",
+    phone: "+861329642946943",
+    description:
+        "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
+    picture: "3.jpeg",
+  ),
+  ContactUserModel(
+    userid: 5,
+    fullname: "Mamadou Alpha Diallo",
+    alias: "Alpha Diallo ",
+    sex: "Male",
+    email: "misterdiallo@outlook.com ",
+    phone: "+8618354919254",
+    description:
+        "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
+    picture: "profile.jpg",
+  ),
+  ContactUserModel(
+    userid: 6,
+    fullname: "Wang Li",
+    alias: "Wang Li",
+    sex: "Male",
+    email: "wangli@qq.com ",
+    phone: "+86183443349254",
+    description:
+        "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
+    picture: "1.jpeg",
+  ),
+  ContactUserModel(
+    userid: 7,
+    fullname: "Zhang Xue",
+    alias: "Zhang Xue ",
+    sex: "Female",
+    email: "zhangxue@qq.com ",
+    phone: "+861300000000",
+    description:
+        "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
+    picture: "2.jpeg",
+  ),
+  ContactUserModel(
+    userid: 8,
+    fullname: "Fu DeQian",
+    alias: "Fu DeQian",
+    sex: "Male",
+    email: "fdq@qq.com ",
+    phone: "+861329642946943",
+    description:
+        "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
+    picture: "3.jpeg",
+  ),
+  ContactUserModel(
+    userid: 9,
+    fullname: "Mamadou Alpha Diallo",
+    alias: "Alpha Diallo ",
+    sex: "Male",
+    email: "misterdiallo@outlook.com ",
+    phone: "+8618354919254",
+    description:
+        "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
+    picture: "profile.jpg",
+  ),
+  ContactUserModel(
+    userid: 10,
+    fullname: "Wang Li",
+    alias: "Wang Li",
+    sex: "Male",
+    email: "wangli@qq.com ",
+    phone: "+86183443349254",
+    description:
+        "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
+    picture: "1.jpeg",
+  ),
+  ContactUserModel(
+    userid: 11,
+    fullname: "Zhang Xue",
+    alias: "Zhang Xue ",
+    sex: "Female",
+    email: "zhangxue@qq.com ",
+    phone: "+861300000000",
+    description:
+        "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
+    picture: "2.jpeg",
+  ),
+  ContactUserModel(
+    userid: 12,
+    fullname: "Fu DeQian",
+    alias: "Fu DeQian",
+    sex: "Male",
+    email: "fdq@qq.com ",
+    phone: "+861329642946943",
+    description:
+        "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
+    picture: "3.jpeg",
+  ),
+  ContactUserModel(
+    userid: 13,
+    fullname: "Mamadou Alpha Diallo",
+    alias: "Alpha Diallo ",
+    sex: "Male",
+    email: "misterdiallo@outlook.com ",
+    phone: "+8618354919254",
+    description:
+        "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
+    picture: "profile.jpg",
+  ),
+  ContactUserModel(
+    userid: 14,
+    fullname: "Wang Li",
+    alias: "Wang Li",
+    sex: "Male",
+    email: "wangli@qq.com ",
+    phone: "+86183443349254",
+    description:
+        "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
+    picture: "1.jpeg",
+  ),
+  ContactUserModel(
+    userid: 15,
+    fullname: "Zhang Xue",
+    alias: "Zhang Xue ",
+    sex: "Female",
+    email: "zhangxue@qq.com ",
+    phone: "+861300000000",
+    description:
+        "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
+    picture: "2.jpeg",
+  ),
+  ContactUserModel(
+    userid: 16,
+    fullname: "Fu DeQian",
+    alias: "Fu DeQian",
+    sex: "Male",
+    email: "fdq@qq.com ",
+    phone: "+861329642946943",
+    description:
+        "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
+    picture: "3.jpeg",
+  ),
+  ContactUserModel(
+    userid: 17,
+    fullname: "Mamadou Alpha Diallo",
+    alias: "Alpha Diallo ",
+    sex: "Male",
+    email: "misterdiallo@outlook.com ",
+    phone: "+8618354919254",
+    description:
+        "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
+    picture: "profile.jpg",
+  ),
+  ContactUserModel(
+    userid: 17,
+    fullname: "Wang Li",
+    alias: "Wang Li",
+    sex: "Male",
+    email: "wangli@qq.com ",
+    phone: "+86183443349254",
+    description:
+        "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
+    picture: "1.jpeg",
+  ),
+  ContactUserModel(
+    userid: 18,
+    fullname: "Zhang Xue",
+    alias: "Zhang Xue ",
+    sex: "Female",
+    email: "zhangxue@qq.com ",
+    phone: "+861300000000",
+    description:
+        "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
+    picture: "2.jpeg",
+  ),
+  ContactUserModel(
+    userid: 19,
+    fullname: "Fu DeQian",
+    alias: "Fu DeQian",
+    sex: "Male",
+    email: "fdq@qq.com ",
+    phone: "+861329642946943",
+    description:
+        "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
+    picture: "3.jpeg",
+  ),
+  ContactUserModel(
+    userid: 20,
+    fullname: "Mamadou Alpha Diallo",
+    alias: "Alpha Diallo ",
+    sex: "Male",
+    email: "misterdiallo@outlook.com ",
+    phone: "+8618354919254",
+    description:
+        "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
+    picture: "profile.jpg",
+  ),
+];

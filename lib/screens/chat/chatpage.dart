@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/apis/fake_data/list_chat_user.dart';
 import 'package:flutter_chat_app_ui/designs/colors.dart';
 import 'package:flutter_chat_app_ui/screens/chat/widgets/conversation_list.dart';
+import 'package:flutter_chat_app_ui/screens/contacts/contact_page.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -35,16 +36,25 @@ class _ChatPageState extends State<ChatPage> {
                           "Chats",
                           style: Theme.of(context).textTheme.headline5,
                         ),
-                        Container(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 2, bottom: 2),
-                          height: 30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: AppColors.primaryLight,
-                          ),
-                          child: GestureDetector(
-                            onTap: () {},
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return const ContactPage();
+                                },
+                                fullscreenDialog: true,
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 2, bottom: 2),
+                            height: 30,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: AppColors.primaryLight,
+                            ),
                             child: Row(
                               children: <Widget>[
                                 const Icon(
@@ -57,7 +67,12 @@ class _ChatPageState extends State<ChatPage> {
                                 ),
                                 Text(
                                   "New Chat",
-                                  style: Theme.of(context).textTheme.bodySmall,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .copyWith(
+                                        color: AppColors.white0,
+                                      ),
                                 ),
                               ],
                             ),
