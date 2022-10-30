@@ -1,11 +1,13 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_chat_app_ui/apis/fake_data/list_chat_user.dart';
 import 'package:flutter_chat_app_ui/designs/colors.dart';
 import 'package:flutter_chat_app_ui/screens/chat/widgets/conversation_list.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+  const ChatPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -29,12 +31,9 @@ class _ChatPageState extends State<ChatPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Text(
+                        Text(
                           "Chats",
-                          style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.white0),
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                         Container(
                           padding: const EdgeInsets.only(
@@ -45,27 +44,20 @@ class _ChatPageState extends State<ChatPage> {
                             color: AppColors.primaryLight,
                           ),
                           child: GestureDetector(
-                            onTap: () {
-                              AdaptiveTheme.of(context).toggleThemeMode();
-                              print(AdaptiveTheme.of(context).mode);
-                            },
+                            onTap: () {},
                             child: Row(
-                              children: const <Widget>[
-                                Icon(
+                              children: <Widget>[
+                                const Icon(
                                   Icons.add,
                                   color: AppColors.white0,
                                   size: 20,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 2,
                                 ),
                                 Text(
                                   "New Chat",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.white0,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ],
                             ),
@@ -106,7 +98,7 @@ class _ChatPageState extends State<ChatPage> {
           ),
           Expanded(
             child: Material(
-              color: appBbackground,
+              color: Theme.of(context).scaffoldBackgroundColor,
               elevation: 3,
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(20),
@@ -117,8 +109,10 @@ class _ChatPageState extends State<ChatPage> {
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(top: 18),
                 // physics: const NeverScrollableScrollPhysics(),
-
-                itemBuilder: (context, index) {
+                itemBuilder: (
+                  context,
+                  index,
+                ) {
                   return ConversationList(
                     model: chatUsers[index],
                   );

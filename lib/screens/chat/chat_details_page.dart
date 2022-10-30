@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/apis/fake_data/messages.dart';
 import 'package:flutter_chat_app_ui/designs/colors.dart';
+import 'package:flutter_chat_app_ui/models/chat_message_model.dart';
 
 import 'package:flutter_chat_app_ui/models/chat_user_model.dart';
 
@@ -17,14 +18,10 @@ class ChatDetailPage extends StatefulWidget {
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
   final ScrollController _scrollController = ScrollController();
-  final FocusNode _msgFocus = FocusNode();
   final TextEditingController _msgTxtEditing = TextEditingController();
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   _scrollToBottom() {
-    _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent + 200,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut);
+    _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
   }
 
   @override
@@ -33,10 +30,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
 
     return Scaffold(
+      backgroundColor: AppColors.primaryDark,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        // backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
             padding: const EdgeInsets.only(right: 16),
@@ -48,7 +45,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   },
                   icon: Icon(
                     Icons.arrow_back,
-                    color: AppBarTheme.of(context).iconTheme!.color,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 const SizedBox(
@@ -89,139 +86,132 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   ),
                 ),
                 Icon(
-                  Icons.settings,
-                  color: AppBarTheme.of(context).iconTheme!.color,
+                  Icons.more_vert_outlined,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ],
             ),
           ),
         ),
       ),
-      body: Stack(
-        children: <Widget>[
-          ListView.builder(
-            controller: _scrollController,
-            itemCount: messages.length,
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(top: 10, bottom: 120),
-            physics: const AlwaysScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.only(
-                    left: 14, right: 14, top: 10, bottom: 10),
-                child: Align(
-                  alignment: (messages[index].messageType == "receiver"
-                      ? Alignment.topLeft
-                      : Alignment.topRight),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: (messages[index].messageType == "receiver"
-                          ? const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            )
-                          : const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
-                            )),
-                      color: (messages[index].messageType == "receiver"
-                          ? AppColors.primaryGrey
-                          : AppColors.primaryLight),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                      messages[index].messageContent,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: AppColors.white0,
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
+      body: Column(
+        children: [
+          Expanded(
             child: Container(
-              color: appBbackground,
-              width: double.infinity,
-              padding: const EdgeInsets.only(
-                  left: 20, bottom: 10, top: 5, right: 20),
-              child: SafeArea(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: AppColors.primaryBleuBic.withOpacity(0.3),
-                  ),
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    bottom: 10,
-                    top: 10,
-                  ),
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryLight,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: AppColors.white0,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Form(
-                          key: _formkey,
-                          child: TextFormField(
-                            textInputAction: TextInputAction.newline,
-                            focusNode: _msgFocus,
-                            keyboardType: TextInputType.multiline,
-                            controller: _msgTxtEditing,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: AppColors.white0,
-                              letterSpacing: 1,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor),
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: messages.length,
+                shrinkWrap: true,
+                // padding: const EdgeInsets.only(top: 10, bottom: 10),
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 14, right: 14, top: 10, bottom: 10),
+                        child: Align(
+                          alignment: (messages[index].messageType == "receiver"
+                              ? Alignment.topLeft
+                              : Alignment.topRight),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width < 500
+                                ? MediaQuery.of(context).size.width * 0.8
+                                : MediaQuery.of(context).size.width * 0.5,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  (messages[index].messageType == "receiver"
+                                      ? const BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                          bottomRight: Radius.circular(20),
+                                        )
+                                      : const BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
+                                        )),
+                              color: (messages[index].messageType == "receiver"
+                                  ? AppColors.primaryGrey
+                                  : AppColors.primaryLight),
                             ),
-                            autofocus: false,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.all(10),
-                              suffixIcon: FloatingActionButton(
-                                onPressed: () {},
-                                backgroundColor: AppColors.primaryLight,
-                                elevation: 0,
-                                child: const Icon(
-                                  Icons.send,
-                                  color: AppColors.white,
-                                  size: 18,
-                                ),
+                            padding: const EdgeInsets.all(16),
+                            child: Text(
+                              messages[index].messageContent,
+                              style: const TextStyle(
+                                fontSize: 15,
+                                color: AppColors.white0,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      //
-                      const SizedBox(
-                        width: 15,
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              // height: 80.0,
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: const Icon(Icons.photo),
+                        iconSize: 25.0,
+                        color: Theme.of(context).primaryColor,
+                        onPressed: () {},
+                      ),
+                      Expanded(
+                        child: TextField(
+                            minLines: 1,
+                            maxLines: 10,
+                            textCapitalization: TextCapitalization.sentences,
+                            onChanged: (value) {},
+                            controller: _msgTxtEditing,
+                            decoration: const InputDecoration.collapsed(
+                              hintText: 'Send a message...',
+                            ),
+                            onTap: () {
+                              _scrollController.animateTo(
+                                  _scrollController.position.maxScrollExtent,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeOut);
+                            }),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.send),
+                        iconSize: 25.0,
+                        color: Theme.of(context).primaryColor,
+                        onPressed: () {
+                          if (_msgTxtEditing.text.isNotEmpty) {
+                            messages.add(
+                              ChatMessageModel(
+                                  messageContent: _msgTxtEditing.text,
+                                  messageType: "sender"),
+                            );
+                            _msgTxtEditing.clear();
+                            setState(() {});
+                          }
+                        },
                       ),
                     ],
                   ),
-                ),
+                  const SizedBox(
+                    height: 15,
+                  )
+                ],
               ),
             ),
           ),

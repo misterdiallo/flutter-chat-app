@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
+
 import 'package:flutter_chat_app_ui/designs/colors.dart';
 import 'package:flutter_chat_app_ui/models/chat_user_model.dart';
 import 'package:flutter_chat_app_ui/screens/chat/chat_details_page.dart';
-import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 class ConversationList extends StatefulWidget {
   ChatUserModel model;
@@ -30,11 +31,7 @@ class ConversationListState extends State<ConversationList> {
         );
       },
       child: Container(
-        decoration: const BoxDecoration(
-            // color: widget.isMessageRead
-            //     ? AppColors.primaryGrey.withOpacity(0.3)
-            //     : AppColors.transparent,
-            ),
+        color: Colors.transparent,
         padding:
             const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
         child: Row(
@@ -43,7 +40,7 @@ class ConversationListState extends State<ConversationList> {
               child: Row(
                 children: <Widget>[
                   ProfilePicture(
-                    name: '',
+                    name: 'x',
                     radius: 21,
                     fontsize: 21,
                     random: true,
@@ -58,8 +55,7 @@ class ConversationListState extends State<ConversationList> {
                       children: <Widget>[
                         Text(
                           model.name,
-                          style: const TextStyle(
-                              fontSize: 16, color: AppColors.white0),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(
                           height: 6,
@@ -68,12 +64,15 @@ class ConversationListState extends State<ConversationList> {
                           model.messageText,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: model.totalNonRead > 0
-                                ? AppColors.primaryLight
-                                : AppColors.greyshade600,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: model.totalNonRead > 0
+                                        ? AppColors.primaryLight
+                                        : Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color,
+                                  ),
                         ),
                       ],
                     ),
@@ -86,10 +85,15 @@ class ConversationListState extends State<ConversationList> {
               children: [
                 Text(
                   model.time,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: AppColors.primaryGrey,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: model.totalNonRead > 0
+                            ? AppColors.primaryLight
+                            : Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .color!
+                                .withOpacity(0.5),
+                      ),
                 ),
                 const SizedBox(
                   height: 5,
@@ -102,7 +106,11 @@ class ConversationListState extends State<ConversationList> {
                           model.totalNonRead.toInt() < 99
                               ? '${model.totalNonRead}'
                               : "+99",
-                          style: const TextStyle(fontSize: 10.0),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                  fontSize: 10.0, color: AppColors.white0),
                         ),
                       )
                     : const SizedBox(),
