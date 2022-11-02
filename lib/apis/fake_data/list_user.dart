@@ -1,7 +1,7 @@
-import 'package:flutter_chat_app_ui/models/contact_user_model.dart';
+import 'package:flutter_chat_app_ui/models/user_model.dart';
 
-List<ContactUserModel> listContactsUser = [
-  ContactUserModel(
+List<UserModel> listUsers = [
+  UserModel(
     userid: 1,
     fullname: "Mamadou Alpha Diallo",
     alias: "Alpha Diallo ",
@@ -12,7 +12,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
     picture: "profile.jpg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 2,
     fullname: "Wang Li",
     alias: "Wang Li",
@@ -23,7 +23,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
     picture: "1.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 3,
     fullname: "Zhang Xue",
     alias: "Zhang Xue ",
@@ -34,7 +34,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
     picture: "2.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 4,
     fullname: "Fu DeQian",
     alias: "Fu DeQian",
@@ -45,7 +45,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
     picture: "3.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 5,
     fullname: "Mamadou Alpha Diallo",
     alias: "Alpha Diallo ",
@@ -56,7 +56,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
     picture: "profile.jpg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 6,
     fullname: "Wang Li",
     alias: "Wang Li",
@@ -67,7 +67,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
     picture: "1.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 7,
     fullname: "Zhang Xue",
     alias: "Zhang Xue ",
@@ -78,7 +78,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
     picture: "2.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 8,
     fullname: "Fu DeQian",
     alias: "Fu DeQian",
@@ -89,7 +89,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
     picture: "3.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 9,
     fullname: "Mamadou Alpha Diallo",
     alias: "Alpha Diallo ",
@@ -100,7 +100,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
     picture: "profile.jpg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 10,
     fullname: "Wang Li",
     alias: "Wang Li",
@@ -111,7 +111,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
     picture: "1.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 11,
     fullname: "Zhang Xue",
     alias: "Zhang Xue ",
@@ -122,7 +122,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
     picture: "2.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 12,
     fullname: "Fu DeQian",
     alias: "Fu DeQian",
@@ -133,7 +133,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
     picture: "3.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 13,
     fullname: "Mamadou Alpha Diallo",
     alias: "Alpha Diallo ",
@@ -144,7 +144,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
     picture: "profile.jpg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 14,
     fullname: "Wang Li",
     alias: "Wang Li",
@@ -155,7 +155,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
     picture: "1.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 15,
     fullname: "Zhang Xue",
     alias: "Zhang Xue ",
@@ -166,7 +166,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
     picture: "2.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 16,
     fullname: "Fu DeQian",
     alias: "Fu DeQian",
@@ -177,7 +177,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
     picture: "3.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 17,
     fullname: "Mamadou Alpha Diallo",
     alias: "Alpha Diallo ",
@@ -188,7 +188,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm Alpha diallo, A Data Scientist, full-stack developer and entreprener.",
     picture: "profile.jpg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 17,
     fullname: "Wang Li",
     alias: "Wang Li",
@@ -199,7 +199,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm WangLi, A Data Scientist, full-stack developer and entreprener.",
     picture: "1.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 18,
     fullname: "Zhang Xue",
     alias: "Zhang Xue ",
@@ -210,7 +210,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm ZhangXue, A Data Scientist, full-stack developer and entreprener.",
     picture: "2.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 19,
     fullname: "Fu DeQian",
     alias: "Fu DeQian",
@@ -221,7 +221,7 @@ List<ContactUserModel> listContactsUser = [
         "I'm FU DE QIAN, A Data Scientist, full-stack developer and entreprener.",
     picture: "3.jpeg",
   ),
-  ContactUserModel(
+  UserModel(
     userid: 20,
     fullname: "Mamadou Alpha Diallo",
     alias: "Alpha Diallo ",

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class ContactUserModel {
+class UserModel {
   int userid;
   String fullname;
   String alias;
@@ -9,7 +9,7 @@ class ContactUserModel {
   String phone;
   String description;
   String picture;
-  ContactUserModel({
+  UserModel({
     required this.userid,
     required this.fullname,
     required this.alias,
@@ -20,7 +20,7 @@ class ContactUserModel {
     required this.picture,
   });
 
-  ContactUserModel copyWith({
+  UserModel copyWith({
     int? userid,
     String? fullname,
     String? alias,
@@ -30,7 +30,7 @@ class ContactUserModel {
     String? description,
     String? picture,
   }) {
-    return ContactUserModel(
+    return UserModel(
       userid: userid ?? this.userid,
       fullname: fullname ?? this.fullname,
       alias: alias ?? this.alias,
@@ -57,8 +57,8 @@ class ContactUserModel {
     return result;
   }
 
-  factory ContactUserModel.fromMap(Map<String, dynamic> map) {
-    return ContactUserModel(
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
       userid: map['userid']?.toInt() ?? 0,
       fullname: map['fullname'] ?? '',
       alias: map['alias'] ?? '',
@@ -72,8 +72,8 @@ class ContactUserModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ContactUserModel.fromJson(String source) =>
-      ContactUserModel.fromMap(json.decode(source));
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -84,7 +84,7 @@ class ContactUserModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ContactUserModel &&
+    return other is UserModel &&
         other.userid == userid &&
         other.fullname == fullname &&
         other.alias == alias &&
