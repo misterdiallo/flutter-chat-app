@@ -1,9 +1,15 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-import 'package:flutter_chat_app_ui/apis/fake_data/list_chat_user.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_chat_app_ui/apis/fake_data/backend/api_config.dart';
+import 'package:flutter_chat_app_ui/apis/fake_data/backend/api_response.dart';
+import 'package:flutter_chat_app_ui/apis/fake_data/backend/message_service.dart';
+
 import 'package:flutter_chat_app_ui/designs/colors.dart';
+import 'package:flutter_chat_app_ui/models/xin/conversation_model.dart';
 import 'package:flutter_chat_app_ui/screens/chat/widgets/conversation_list.dart';
 import 'package:flutter_chat_app_ui/screens/contacts/contact_page.dart';
+import 'package:get_it/get_it.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -15,6 +21,41 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  MessageService get service => GetIt.I<MessageService>();
+  late APIResponse<List<ConversationModel>> _apiResponse;
+  bool _isLoading = false;
+  Future<void> _fetchMessages() async {
+    setState(() {
+      _isLoading = true;
+    });
+    _apiResponse = await service.getAllMyConversations(ApiConfig.userIdDefault);
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  var dataStream;
+  final streamController = StreamController();
+  Stream messagesStream() async* {
+    while (true) {
+      dataStream = await service
+          .getAllMyConversations(ApiConfig.userIdDefault)
+          .then((value) => value);
+      // streamController.add(dataStream);
+      // streamController.stream.listen((event) {
+      //   print(event);
+      // });
+
+      yield dataStream;
+    }
+  }
+
+  @override
+  void initState() {
+    _fetchMessages();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,20 +160,77 @@ class _ChatPageState extends State<ChatPage> {
                 topRight: Radius.circular(20),
                 topLeft: Radius.circular(20),
               ),
-              child: ListView.builder(
-                itemCount: chatUsers.length,
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(top: 18),
-                // physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (
-                  context,
-                  index,
+              child: StreamBuilder(
+                stream: messagesStream(),
+                builder: (
+                  BuildContext context,
+                  AsyncSnapshot snapshot,
                 ) {
-                  return ConversationList(
-                    model: chatUsers[index],
-                  );
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    );
+                  } else if (snapshot.connectionState ==
+                          ConnectionState.active ||
+                      snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text(_apiResponse.errorMessage),
+                        ),
+                      );
+                    } else if (snapshot.hasData) {
+                      List<ConversationModel> listMessages = dataStream.data;
+                      return ListView.builder(
+                        itemCount: listMessages.length,
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.only(top: 18),
+                        // physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (
+                          context,
+                          index,
+                        ) {
+                          return ConversationList(
+                            model: listMessages[index],
+                          );
+                        },
+                      );
+                    } else {
+                      return const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text("No Conversation."),
+                        ),
+                      );
+                    }
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Text('State: ${snapshot.connectionState}'),
+                      ),
+                    );
+                  }
                 },
               ),
+
+              // ListView.builder(
+              //   itemCount: chatUsers.length,
+              //   shrinkWrap: true,
+              //   padding: const EdgeInsets.only(top: 18),
+              //   // physics: const NeverScrollableScrollPhysics(),
+              //   itemBuilder: (
+              //     context,
+              //     index,
+              //   ) {
+              //     return ConversationList(
+              //       model: chatUsers[index],
+              //     );
+              //   },
+              // ),
             ),
           ),
         ],

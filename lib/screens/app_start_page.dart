@@ -1,7 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/designs/themes.dart';
-import 'package:flutter_chat_app_ui/screens/auth/login_page.dart';
+import 'package:flutter_chat_app_ui/screens/homepage.dart';
 
 class AppStartPage extends StatelessWidget {
   final AdaptiveThemeMode? savedThemeMode;
@@ -24,7 +24,8 @@ class AppStartPage extends StatelessWidget {
         title: 'Chat App UI',
         theme: theme,
         darkTheme: darkTheme,
-        home: const LoginPage(),
+        home: const HomePage(),
+        // home: const LoginPage(),
       ),
     );
   }
